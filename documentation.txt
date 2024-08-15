@@ -1,0 +1,39 @@
+Task Management App
+
+Overview
+
+This is a simple task management app that allows users to add, remove, list, prioritize, and receive task recommendations based on task descriptions.
+
+Classes
+
+Task
+
+- *init(self, name, description, priority)*: Initializes a new Task object with the given name, description, and priority.
+- name: The name of the task.
+- description: The description of the task.
+- priority: The priority of the task.
+
+TaskManager:
+
+- *init(self)*: Initializes a new TaskManager object with an empty list of tasks.
+- add_task(self, name, description, priority): Adds a new task to the list of tasks.
+- remove_task(self, name): Removes a task from the list of tasks by name.
+- list_tasks(self): Prints out a list of all tasks.
+- prioritize_tasks(self): Sorts the list of tasks by priority.
+- recommend_tasks(self, keyword): Returns a list of tasks that contain the given keyword in their description.
+
+Main App
+
+- main(): The main function that runs the task management app.
+- choice: The user's choice of action (add, remove, list, prioritize, recommend, or quit).
+
+Usage
+
+1. Run the program.
+2. Choose an option from the menu:
+    -         1. Add Task: Enter task name, description, and priority.
+    -         1. Remove Task: Enter task name to remove.
+    -         1. List Tasks: Prints out all tasks.
+    -         1. Prioritize Tasks: Sorts tasks by priority.
+    -         1. Get Task Recommendations: Enter keyword to get recommended tasks.
+    -         1. Quit: Exits the program.

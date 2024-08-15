@@ -1,0 +1,82 @@
+import random
+
+class Task:
+    def __init__(self, description, priority=1):
+        self.description = description
+        self.priority = priority
+
+    def __repr__(self):
+        return f"Task(description='{self.description}', priority={self.priority})"
+
+class TaskManager:
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self, description, priority=1):
+        new_task = Task(description, priority)
+        self.tasks.append(new_task)
+        print(f"Added task: {new_task}")
+
+    def remove_task(self, description):
+        initial_count = len(self.tasks)
+        self.tasks = [task for task in self.tasks if task.description != description]
+        if len(self.tasks) < initial_count:
+            print(f"Removed task with description: '{description}'")
+        else:
+            print(f"No task found with description: '{description}'")
+
+    def list_tasks(self):
+        if not self.tasks:
+            print("No tasks available.")
+            return
+        print("Tasks List:")
+        for task in sorted(self.tasks, key=lambda t: t.priority, reverse=True):
+            print(f"Description: {task.description}, Priority: {task.priority}")
+
+    def prioritize_tasks(self):
+        self.tasks.sort(key=lambda t: t.priority, reverse=True)
+        print("Tasks prioritized.")
+
+    def recommend_tasks(self):
+        if not self.tasks:
+            print("No tasks to recommend.")
+            return
+        # Simple recommendation: return a random task description
+        recommended_task = random.choice(self.tasks)
+        print(f"Recommended Task: {recommended_task.description}")
+
+def main():
+    manager = TaskManager()
+
+    while True:
+        print("\nTask Manager Menu:")
+        print("1. Add Task")
+        print("2. Remove Task")
+        print("3. List Tasks")
+        print("4. Prioritize Tasks")
+        print("5. Recommend Task")
+        print("6. Exit")
+        
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            description = input("Enter task description: ")
+            priority = int(input("Enter task priority (default is 1): ") or 1)
+            manager.add_task(description, priority)
+        elif choice == '2':
+            description = input("Enter task description to remove: ")
+            manager.remove_task(description)
+        elif choice == '3':
+            manager.list_tasks()
+        elif choice == '4':
+            manager.prioritize_tasks()
+        elif choice == '5':
+            manager.recommend_tasks()
+        elif choice == '6':
+            print("Exiting Task Manager.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
